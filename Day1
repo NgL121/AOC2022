@@ -1,0 +1,12 @@
+with open("day1.txt", "r") as quest:
+    lines = quest.readlines()
+    elves = []
+    sum_cal = 0
+    for i in lines:
+        if i == lines[12]:
+            elves.append(sum_cal)
+            sum_cal = 0
+        else:
+            sum_cal += int(i)
+    print(max(elves))
+    print(sum(sorted(elves)[-3:]))
