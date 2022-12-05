@@ -1,0 +1,31 @@
+with open('day2.txt', 'r') as day2:
+    lines = day2.readlines()
+    
+#PART 1:
+points = 0
+for line in lines:  
+    if ord(line[2])-ord(line[0]) == 23:
+        points += 3
+    elif ord(line[2])-ord(line[0]) in [21,24]:
+        points += 6
+    #print(ord(line[2]), end = " ")
+    points += ord(line[2]) - 87 #1 for X, 2 for Y, 3 for Z
+print(points)
+    
+    
+#PART 2:
+#spent a little bit too much time working on this 'cause I wanted my code to be as neat as possible
+#totally worth it!!!!!
+points = 0
+for line in lines:    
+    if line[2] == 'Y':
+        points += 3
+    elif line[2] == 'Z':
+        points += 6
+
+    if (ord(line[0])+ord(line[2]))%3 == 0: #always scissors
+        points += 3
+    else:
+        points += (ord(line[0])+ord(line[2]))%3 #steps
+
+print(points)
