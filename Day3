@@ -1,0 +1,45 @@
+with open('day3.txt', 'r') as day3:
+    lines = day3.readlines()
+
+#PART 1:
+for i in range(len(lines)):
+    lines[i] = lines[i].rstrip()
+
+sum_pri = 0
+
+for line in lines:
+    half = int(len(line)/2)
+    first = line[:half]
+    second = line[-half:]
+    for a in first:
+        for count_dou in range(1,2):
+            if a in second:
+                c = a
+    if c.islower():
+        sum_pri += ord(c) - 96
+    else:
+        sum_pri += ord(c) - 38
+print(sum_pri)
+
+
+
+#PART 2:
+trip = []
+sum_trip = 0
+for line in lines:
+    idx = lines.index(line)
+    idx2 = idx - 2
+    if idx%3 == 2:
+        trip.append(lines[idx2:idx+1])
+
+for a in trip:
+    for c in a[0]:
+        if (c in a[1]) and (c in a[2]):
+            d = c
+            
+    if d.islower():
+        sum_trip += ord(d) - 96
+    else:
+        sum_trip += ord(d) - 38
+        
+print(sum_trip)
