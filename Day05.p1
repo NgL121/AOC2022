@@ -1,0 +1,25 @@
+with open("day5.txt", "r") as day5:
+    pack1, moves = day5.read().split("\n\n")
+    pack1 = pack1.splitlines()[:-1][::-1]
+    pack = []
+    for e in range(1, len(pack1[0]), 4):
+        mid = []
+        for x in pack1:
+            if x[e] != " ":
+                mid.append(x[e])
+        pack.append(mid)
+    group = []
+    for line in moves.splitlines():
+        sub_group = []
+        for a in line.split(" "):
+            if a.isdigit():
+                sub_group.append(a)
+        group.append(sub_group)
+        for e in group:
+            a, b, c = int(e[0]), int(e[1]), int(e[2])
+        for d in range(a):
+            pack[c-1].append(pack[b-1].pop(-1))
+    final =[]
+    for f in pack:
+        final.append(f[-1])
+    print(final)
