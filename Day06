@@ -1,0 +1,13 @@
+with open ('day6.txt', 'r') as day6:
+    mess = day6.read()
+
+bigger_mess = [*mess]
+p1 = []
+p2 = []
+for i in range(len(bigger_mess)):
+    if len(set(bigger_mess[(i-4):i])) == 4:         #such an amazing function
+        p1.append(i)
+    if len(set(bigger_mess[(i-14):i])) == 14:
+        p2.append(i)
+print('p1: ', p1[0])
+print('p2: ', p2[0])
