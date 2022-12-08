@@ -1,0 +1,26 @@
+with open('day8.txt', 'r') as day8:
+    lines = day8.read().splitlines()
+    count_vis = 0 
+    def get_vis(tree, low, a = 0):
+        count = 0
+        for i in low:
+            if a == 1:
+                count += 1
+            elif i < tree:
+                    count += 1
+            if i >= tree:
+                break
+        return count
+
+    final = 0
+    for i in range(len(lines)): #I thought this should be range(1, len() - 1) but this thing didn't work
+        for j in range(len(lines[0])):
+            tree, left, right, top_list, bot_list = lines[i][j], lines[i][:j][::-1], lines[i][j+1:], lines[:i][::-1], lines[i + 1:]
+            top = [h[j] for h in top_list]
+            bot = [h[j] for h in bot_list]
+            if (get_vis(tree, left) != len(left)) and (get_vis(tree, right) != len(right)) and (get_vis(tree, top) != len(top_list)) and (get_vis(tree, bot) != len(bot_list)):
+                count_vis = count_vis
+            else:
+                count_vis += 1
+            final = max(final, get_vis(tree, left, 1) * get_vis(tree, right, 1) * get_vis(tree, top,1) * get_vis(tree, bot,1))
+    print(count_vis, final)
