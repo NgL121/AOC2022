@@ -1,0 +1,16 @@
+with open ('day10.txt', 'r') as day10:
+    lines = [line.split(' ') for line in day10.read().split('\n')]
+    val_list = [1]
+    val = 1
+    for i in range(len(lines)):
+        if lines[i][0] == 'noop':
+            cyc += 1
+            val_list.append(val)
+        elif lines[i][0] == 'addx':
+            val_list.append(val) #first cycle
+            val += int(lines[i][1])
+            val_list.append(val) #second cycle
+    summe = 0
+    for a in [20, 60, 100, 140, 180, 220]:
+        summe += a*val_list[a-1]
+    print(summe)
